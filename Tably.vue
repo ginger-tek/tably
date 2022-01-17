@@ -1,5 +1,5 @@
 <template>
-  <div class="tably">
+  <div class="['tably',{loading: loading}]">
     <table>
       <thead>
         <tr>
@@ -12,6 +12,16 @@
             <slot :name="c.name" :data="r">{{ r[c.name] }}</slot>
           </td>
         </tr>
+        <tr v-if="filter && rows.length == 0">
+          <td :colspan="cols.length">
+            <slot name="filteredEmpty">No filtered results</slot>
+          </td>
+        </tr>
+        <tr v-else-if="!filter && rows.length == 0">
+          <td :colspan="cols.length">
+            <slot name="noData">No data</slot>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -22,7 +32,8 @@ export default {
   props: {
     items: Array,
     fields: Array,
-    filter: String
+    filter: String,
+    loading: Boolean
   },
   methods: {
     wordize(s) {
