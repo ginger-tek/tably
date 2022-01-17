@@ -1,14 +1,14 @@
 <template>
-  <div class="['tably',{loading: loading}]">
+  <div :class="['tably',{loading: loading}]">
     <table>
       <thead>
         <tr>
-          <th v-for="c in cols" :key="c.name">{{ c.label }}</th>
+          <th v-for="c in cols" :key="c.name" :class="{num:c.num}">{{ c.label }}</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(r,i) in rows" :key="i">
-          <td v-for="c in cols" :key="c.name">
+          <td v-for="c in cols" :key="c.name" :class="{num:c.num}">
             <slot :name="c.name" :data="r">{{ r[c.name] }}</slot>
           </td>
         </tr>
@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     wordize(s) {
+      if(s.name) s = s.name
       return s.split(/-|_|(?=[A-Z])/).map(w=>w[0].toUpperCase() + w.substring(1)).join(' ')
     }
   },
@@ -45,10 +46,10 @@ export default {
       let keys = []
       if(this.fields) keys = this.fields
       else if(this.items && this.items[0]) keys = Object.keys(this.items[0])
-      return keys.map(f=>({
-        name: (f.name || f),
-        label: (f.label || this.wordize(f)),
-        num: (f.num || false)
+      return keys.map(k=>({
+        name: (k.name || k),
+        label: (k.label || this.wordize(k)),
+        num: (k.num || false)
       }))
     },
     rows() {
@@ -64,3 +65,25 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .tably {
+    overflow: auto;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px 10px;
+  }
+  th {
+    text-align: left;
+    border-bottom: 1px solid;
+  }
+  td {
+    border-bottom: 1px solid lightgray;
+  }
+  .num {
+    text-align: right;
+  }
+</style>
