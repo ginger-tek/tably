@@ -3,7 +3,7 @@
     <table>
       <thead>
         <tr>
-          <td v-for="c in cols" :key="c.name">{{ c.label }}</td>
+          <th v-for="c in cols" :key="c.name">{{ c.label }}</th>
         </tr>
       </thead>
       <tbody>
