@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, computed, watch } from 'vue'
+import { reactive, computed } from 'vue'
 const props = defineProps({
   items: Array,
   fields: Array,
