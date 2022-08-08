@@ -21,7 +21,7 @@ const rows = computed(() => {
   })
 })
 const cols = computed(() => {
-  let cs = props.fields || Object.keys(props.items ? props.items[0] : {})
+  let cs = props.fields || Object.keys(props.items?.length > 0 ? props.items[0] : {})
   return cs.map(c => ({
     n: c.name || c,
     l: c.label || (c.name || c).split(/_|-|(?=[A-Z])/).map(w => w[0].toUpperCase() + w.substring(1)).join(' '),

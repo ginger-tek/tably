@@ -38,7 +38,7 @@ export default {
       })
     },
     cols() {
-      let cs = this.fields || Object.keys(this.items ? this.items[0] : {})
+      let cs = this.fields || Object.keys(this.items?.length > 0 ? this.items[0] : {})
       return cs.map(c => ({
         n: c.name || c,
         l: c.label || (c.name || c).split(/_|-|(?=[A-Z])/).map(w => w[0].toUpperCase() + w.substring(1)).join(' '),
