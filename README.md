@@ -5,7 +5,9 @@ Styling is up to implementation, allowing usage across UI frameworks like Bootst
 
 The component also provides the `.tably` and `.tably-table` classes, for styling the respective wrapper `<div>` and `<table>` elements via CSS.
 
----
+## Getting Started
+
+Use the respective `.vue` or `.js` file for build tool projects or direct ESM browser usage, and import accordingly.
 
 ## Props
 - `items` : Array of objects to render for each row
@@ -13,8 +15,6 @@ The component also provides the `.tably` and `.tably-table` classes, for styling
 - `filter` : String by which to filter rows
 - `loading` : Boolean switch to show a loading indicator row
 - `styles` : String of CSS class names to style the `<table>` element
-
----
 
 ## Examples
 
