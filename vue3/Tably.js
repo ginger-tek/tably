@@ -1,8 +1,8 @@
 const { reactive, computed } = Vue
 
-const template = `<div :class="['tably', loading]">
-  <table class="tably-table table table-bordered">
-    <thead class="table-light">
+const template = `<div :class="['tably', loading]" style="overflow:auto">
+  <table :class="['tably-table', props.styles]">
+    <thead>
       <tr>
         <th v-for="c in cols" :key="c.n" :class="isSort(c.n)" :style="{ 'text-align': (c.a ? 'right' : 'left') }"
           @click="tglSort(c.n)">{{
@@ -47,7 +47,8 @@ export default {
     items: Array,
     fields: Array,
     filter: String,
-    loading: Boolean
+    loading: Boolean,
+    styles: String
   },
   setup(props) {
     const data = reactive({ sortBy: '', sortDir: 1 })

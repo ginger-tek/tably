@@ -4,7 +4,8 @@ const props = defineProps({
   items: Array,
   fields: Array,
   filter: String,
-  loading: Boolean
+  loading: Boolean,
+  styles: String
 })
 const data = reactive({ sortBy: '', sortDir: 1 })
 const rows = computed(() => {
@@ -42,8 +43,8 @@ function tglSort(cn) {
 </script>
 
 <template>
-  <div :class="['tably', loading]">
-    <table class="tably-table">
+  <div :class="['tably', loading]" style="overflow:auto">
+    <table :class="['tably-table', props.styles]">
       <thead>
         <tr>
           <th v-for="c in cols" :key="c.n" :class="isSort(c.n)" :style="{ 'text-align': (c.a ? 'right' : 'left') }"
