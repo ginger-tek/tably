@@ -13,7 +13,7 @@ const template = `<div :class="['tably', loading]" style="overflow:auto">
     <tbody>
       <tr v-for="(r, i) in rows" :key="i">
         <td v-for="c in cols" :key="c.n" :style="{ 'text-align': (c.a ? 'right' : 'left') }">
-          <slot :name="c.n" :="r">{{ r[c.n] }}</slot>
+          <slot :name="c.n.toLowerCase()" :="r">{{ r[c.n] }}</slot>
         </td>
       </tr>
       <tr v-if="props.loading">
